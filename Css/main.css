@@ -1,0 +1,75 @@
+body {
+  margin: 0;
+  background-color: rgb(14, 102, 52);
+}
+
+.mainContainer,
+.secondContainer {
+  margin: 1%;
+  padding: 1%;
+  display: flex;
+  justify-content: space-evenly;
+  text-align: center;
+  color: white;
+  border: 5px ridge rgb(14, 88, 46);
+  height: 100%;
+}
+
+.leftBox,
+.rightBox,
+.buttonBox,
+.scoreBox {
+  display: inline-block;
+  justify-content: space-between;
+  padding: 1%;
+  max-height: 100%;
+  padding: 0;
+  flex: 1;
+}
+
+img {
+  height: 45vh;
+  border: none;
+}
+
+img:hover {
+  box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
+  transition: all 0.4s ease 0s;
+}
+
+.yourCards,
+.botCards {
+  height: 10%;
+}
+
+button {
+  color: #fff !important;
+  text-transform: uppercase;
+  text-decoration: none;
+  background: #cc6714;
+  padding: 20px;
+  border-radius: 50px;
+  display: inline-block;
+  border: none;
+  transition: all 0.4s ease 0s;
+}
+
+button:hover {
+  text-shadow: 0px 0px 6px rgba(255, 255, 255, 1);
+  box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
+  transition: all 0.4s ease 0s;
+}
+
+button:focus {
+  outline: 0;
+  text-shadow: 0px 0px 3px rgba(255, 255, 255, 1);
+  box-shadow: 0px 1px 20px -10px rgba(0, 0, 0, 0.57);
+  transition: all 0.4s ease 0s;
+}
+
+.scoreBox {
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
