@@ -1,46 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>White Jack</title>
     <link rel="stylesheet" href="./Css/main.css" />
+    <link rel="shortcut icon" href="" />
     <script src="./Js/logic.js" defer></script>
+    <link rel="shortcut icon" href="./src/favicon.ico" />
   </head>
   <body>
+    <a href="#eng" data-reload></a>
+    <a href="#ita" data-reload></a>
+    <h1 class="resultMessage" id="result-message">
+      Ciao! <br />
+      Quanto vicino a 17 riuscirai ad arrivare senza superarlo?
+    </h1>
+    <h1 class="title">White Jack</h1>
     <div class="mainContainer">
-
-        <div class="leftBox">
-          <h1 class="you" id="your-score">Punteggio: 0</h1>
-          <div class="yourCards" id="your-cards">
-              <img src="/src/Cards/10b.png" alt="" srcset="">
-              <img src="/src/Cards/10d.png" alt="" srcset="">
-              <img src="/src/Cards/6c.png" alt="" srcset="">
-          </div>
-        </div>
-
-        <div class="rightBox">
-          <h1 class="bot" id="bot-score">Bot: 0</h1>
-          <div class="botCards" id="bot-cards">
-            <img src="/src/Cards/3d.png" alt="" srcset="">
-            <img src="/src/Cards/9d.png" alt="" srcset="">
-            <img src="/src/Cards/1b.png" alt="" srcset=""></div>
-        </div>
+      <div class="leftBox">
+        <h1 class="you">Punteggio: <strong id="your-score">0</strong></h1>
+        <div class="yourCards" id="your-cards"></div>
       </div>
 
-      <div class="secondContainer"> 
-        <div class="buttonBox">
-          <button class="hitButton" id="hit-button">Punta</button>
-          <button class= "standButton" id="stand-button">Stai</button>
-          <button class="dealButton" id="deal-button">Carta</button>
+      <div class="rightBox">
+        <h1 class="bot">Bot: <strong id="bot-score">0</strong></h1>
+        <div class="botCards" id="bot-cards"></div>
+      </div>
+    </div>
+
+    <div class="secondContainer">
+      <div class="buttonBox">
+        <button class="hitButton" id="hit-button">Carta</button>
+        <button class="standButton" id="stand-button">Stai</button>
+        <button class="dealButton" id="deal-button">Fine</button>
       </div>
 
-      <ul class="scoreBox">
-        <li id="wins">Vincite: 0</li>
-        <li id="losses">Perdite: 0</li>
-        <li id="draws">Pareggi: 0</li>
-      </ul>
-
+      <div class="scoreBox">
+        <p id="wins">
+          Vincite: <strong class="winsNumber" id="wins-number">0</strong>
+        </p>
+        <p id="losses">
+          Perdite: <strong class="lossesNumber" id="losses-number">0</strong>
+        </p>
+        <p id="draws">
+          Pareggi: <strong class="drawsNumber" id="draws-number">0</strong>
+        </p>
       </div>
     </div>
   </body>

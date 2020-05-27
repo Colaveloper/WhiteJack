@@ -1,18 +1,43 @@
+@import url("https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Kaushan+Script&family=Lobster&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap");
+
 body {
   margin: 0;
+  position: absolute;
+  height: 100%;
+  width: 100%;
   background-color: rgb(14, 102, 52);
+  display: flex;
+  flex-direction: column;
+  font-family: "Lato", sans-serif;
+  color: white;
+}
+.title {
+  text-align: center;
+  font-size: 2em;
+  font-weight: normal;
+  font-family: "Lobster", cursive;
+}
+
+h1 {
+  margin: 1% auto;
 }
 
 .mainContainer,
 .secondContainer {
-  margin: 1%;
+  margin: 0 3% 3%;
   padding: 1%;
   display: flex;
-  justify-content: space-evenly;
   text-align: center;
-  color: white;
-  border: 5px ridge rgb(14, 88, 46);
-  height: 100%;
+  align-items: center;
+  border-radius: 25px;
+  border: 5px ridge rgb(255, 255, 255);
+  flex: 1;
+}
+
+.mainContainer {
+  border-bottom: none;
+  flex: 5;
 }
 
 .leftBox,
@@ -22,36 +47,50 @@ body {
   display: inline-block;
   justify-content: space-between;
   padding: 1%;
-  max-height: 100%;
   padding: 0;
   flex: 1;
 }
 
+.leftBox,
+.rightBox {
+  height: 100%;
+}
+
+.bot,
+.you {
+  margin-bottom: 10%;
+}
 img {
-  height: 45vh;
+  max-height: 32vh;
   border: none;
+  margin: 0 0.1vh;
 }
 
 img:hover {
-  box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
-  transition: all 0.4s ease 0s;
+  box-shadow: 0px 5px 40px -10px rgba(4, 31, 15, 0.9);
+  transition: all 0.1s ease 0s;
 }
 
 .yourCards,
 .botCards {
-  height: 10%;
+  display: flex;
+  justify-content: center;
 }
 
 button {
   color: #fff !important;
+  border: 5px ridge rgb(255, 255, 255);
   text-transform: uppercase;
-  text-decoration: none;
-  background: #cc6714;
+  font-weight: bold;
+  background: #0b983a;
   padding: 20px;
   border-radius: 50px;
   display: inline-block;
   border: none;
   transition: all 0.4s ease 0s;
+  min-width: 20%;
+  margin: 0 2%;
+  box-shadow: 0px 5px 10px -50px rgba(0, 0, 0, 0.57);
 }
 
 button:hover {
@@ -62,14 +101,23 @@ button:hover {
 
 button:focus {
   outline: 0;
-  text-shadow: 0px 0px 3px rgba(255, 255, 255, 1);
-  box-shadow: 0px 1px 20px -10px rgba(0, 0, 0, 0.57);
-  transition: all 0.4s ease 0s;
 }
 
 .scoreBox {
   list-style-type: none;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: center;
+}
+
+p {
+  margin: 0 4%;
+  font-size: 1.2em;
+}
+
+.resultMessage {
+  position: absolute;
+  align-self: center;
+  bottom: 25%;
+  text-align: center;
 }
