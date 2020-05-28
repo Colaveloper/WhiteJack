@@ -1,5 +1,4 @@
 document.querySelector("#hit-button").addEventListener("click", hit);
-document.querySelector("#deal-button").addEventListener("click", deal);
 document.querySelector("#stand-button").addEventListener("click", botLogic);
 
 let wj = {
@@ -61,6 +60,7 @@ let wj = {
   losses: 0,
   isStand: false,
   turnsAreOver: false,
+  standable: false,
 };
 
 const YOU = wj["you"];
@@ -91,6 +91,7 @@ function hit() {
       document.querySelector("#your-score").textContent = "SBALLATO!";
       document.querySelector("#your-score").style.color = "yellow";
     }
+    wj.standable = true;
   }
 }
 
@@ -101,12 +102,14 @@ function displayCard(card, currentPlayer) {
   hitSound.play();
 }
 
-function deal() {
+async function deal() {
   if (wj.turnsAreOver == true) {
+    showResult(computeWinner());
     wj.isStand = false;
     const yourCards = document
       .querySelector("#your-cards")
       .querySelectorAll("img");
+    await sleep(2000);
     for (i = 0; i < yourCards.length; i++) {
       yourCards[i].remove();
     }
@@ -115,7 +118,6 @@ function deal() {
       botCards[i].remove();
     }
 
-    showResult(computeWinner());
     YOU.score = 0;
     BOT.score = 0;
     document.querySelector("#your-score").textContent = "0";
@@ -143,33 +145,35 @@ function sleep(ms) {
 }
 
 async function botLogic() {
-  wj.isStand = true;
-  if (wj.turnsAreOver == false) {
-    wj.turnsAreOver = true;
-    let card = randomCard();
-    displayCard(card, BOT);
-    updateScore(card, BOT);
-    displayScore(BOT);
-    await sleep(1000);
-  }
-  while (
-    BOT.score < YOU.score &&
-    BOT.score < 17 &&
-    YOU.score <= 17 &&
-    wj.isStand == true
-  ) {
-    let card = randomCard();
-    displayCard(card, BOT);
-    updateScore(card, BOT);
-    displayScore(BOT);
-    if (BOT.score > 17) {
-      document.querySelector("#bot-score").textContent = "SBALLATO!";
-      document.querySelector("#bot-score").style.color = "yellow";
+  if (wj.standable == true) {
+    wj.isStand = true;
+    if (wj.turnsAreOver == false) {
+      wj.turnsAreOver = true;
+      let card = randomCard();
+      displayCard(card, BOT);
+      updateScore(card, BOT);
+      displayScore(BOT);
+      await sleep(1000);
     }
-    await sleep(1000);
-  }
+    while (
+      BOT.score < YOU.score &&
+      BOT.score < 17 &&
+      YOU.score <= 17 &&
+      wj.isStand == true
+    ) {
+      let card = randomCard();
+      displayCard(card, BOT);
+      updateScore(card, BOT);
+      displayScore(BOT);
+      if (BOT.score > 17) {
+        document.querySelector("#bot-score").textContent = "SBALLATO!";
+        document.querySelector("#bot-score").style.color = "yellow";
+      }
+      await sleep(1000);
+    }
 
-  showResult(computeWinner);
+    deal();
+  }
 }
 
 function computeWinner() {
@@ -236,7 +240,6 @@ function switchLanguage() {
     document.querySelector("#draws-title").textContent = "Draws: ";
     document.querySelector("#hit-button").textContent = "hit";
     document.querySelector("#stand-button").textContent = "stand";
-    document.querySelector("#deal-button").textContent = "deal";
     document.querySelector("#language").textContent = "Versione italiana";
   } else {
     document.querySelector("#you").textContent = "Punteggio: ";
@@ -248,7 +251,6 @@ function switchLanguage() {
     document.querySelector("#draws-title").textContent = "Pareggi: ";
     document.querySelector("#hit-button").textContent = "carta";
     document.querySelector("#stand-button").textContent = "stai";
-    document.querySelector("#deal-button").textContent = "fine";
     document.querySelector("#language").textContent = "English version";
   }
   languageIsEnglish = !languageIsEnglish;
