@@ -78,6 +78,7 @@ function randomCard() {
 }
 
 function hit() {
+  hideResult();
   wj.turnsAreOver = false;
   if (wj.isStand == false) {
     if (currentPlayer.score <= 17) {
@@ -143,7 +144,20 @@ function sleep(ms) {
 
 async function botLogic() {
   wj.isStand = true;
-  while (BOT.score <= YOU.score && wj.isStand == true) {
+  if (wj.turnsAreOver == false) {
+    wj.turnsAreOver = true;
+    let card = randomCard();
+    displayCard(card, BOT);
+    updateScore(card, BOT);
+    displayScore(BOT);
+    await sleep(1000);
+  }
+  while (
+    BOT.score < YOU.score &&
+    BOT.score < 17 &&
+    YOU.score <= 17 &&
+    wj.isStand == true
+  ) {
     let card = randomCard();
     displayCard(card, BOT);
     updateScore(card, BOT);
@@ -154,7 +168,7 @@ async function botLogic() {
     }
     await sleep(1000);
   }
-  wj.turnsAreOver = true;
+
   showResult(computeWinner);
 }
 
@@ -200,4 +214,42 @@ function showResult(winner) {
     document.querySelector("#result-message").textContent = message;
     document.querySelector("#result-message").style.color = messageColor;
   }
+}
+
+function hideResult() {
+  document.querySelector("#result-message").textContent = "";
+}
+
+// Now on I'll care bout languages
+
+document.querySelector("#language").addEventListener("click", switchLanguage);
+let languageIsEnglish = false;
+
+function switchLanguage() {
+  if (languageIsEnglish == false) {
+    document.querySelector("#you").textContent = "You: ";
+    document.querySelector("#bot").textContent = "Bot: ";
+    document.querySelector("#result-message").innerHTML =
+      "Hey bro! <br> How close to 17 will you be able to get without exceeding it?";
+    document.querySelector("#wins-title").textContent = "Wins: ";
+    document.querySelector("#losses-title").textContent = "Losses: ";
+    document.querySelector("#draws-title").textContent = "Draws: ";
+    document.querySelector("#hit-button").textContent = "hit";
+    document.querySelector("#stand-button").textContent = "stand";
+    document.querySelector("#deal-button").textContent = "deal";
+    document.querySelector("#language").textContent = "Versione italiana";
+  } else {
+    document.querySelector("#you").textContent = "Punteggio: ";
+    document.querySelector("#bot").textContent = "Computer: ";
+    document.querySelector("#result-message").innerHTML =
+      "Ciao! <br/> Quanto vicino a 17 riuscirai ad arrivare senza superarlo?";
+    document.querySelector("#wins-title").textContent = "Vincite: ";
+    document.querySelector("#losses-title").textContent = "Perdite: ";
+    document.querySelector("#draws-title").textContent = "Pareggi: ";
+    document.querySelector("#hit-button").textContent = "carta";
+    document.querySelector("#stand-button").textContent = "stai";
+    document.querySelector("#deal-button").textContent = "fine";
+    document.querySelector("#language").textContent = "English version";
+  }
+  languageIsEnglish = !languageIsEnglish;
 }

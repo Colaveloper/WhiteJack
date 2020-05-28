@@ -10,8 +10,7 @@
     <link rel="shortcut icon" href="./src/favicon.ico" />
   </head>
   <body>
-    <a href="#eng" data-reload></a>
-    <a href="#ita" data-reload></a>
+    <h3 class="language" id="language">English version</h3>
     <h1 class="resultMessage" id="result-message">
       Ciao! <br />
       Quanto vicino a 17 riuscirai ad arrivare senza superarlo?
@@ -19,12 +18,16 @@
     <h1 class="title">White Jack</h1>
     <div class="mainContainer">
       <div class="leftBox">
-        <h1 class="you">Punteggio: <strong id="your-score">0</strong></h1>
+        <h1 class="you">
+          <span id="you">Punteggio: </span><strong id="your-score">0</strong>
+        </h1>
         <div class="yourCards" id="your-cards"></div>
       </div>
 
       <div class="rightBox">
-        <h1 class="bot">Bot: <strong id="bot-score">0</strong></h1>
+        <h1 class="bot">
+          <span id="bot">Computer: </span><strong id="bot-score">0</strong>
+        </h1>
         <div class="botCards" id="bot-cards"></div>
       </div>
     </div>
@@ -38,13 +41,16 @@
 
       <div class="scoreBox">
         <p id="wins">
-          Vincite: <strong class="winsNumber" id="wins-number">0</strong>
+          <span id="wins-title">Vittorie: </span
+          ><strong class="winsNumber" id="wins-number">0</strong>
         </p>
         <p id="losses">
-          Perdite: <strong class="lossesNumber" id="losses-number">0</strong>
+          <span id="losses-title">Perdite:</span
+          ><strong class="lossesNumber" id="losses-number">0</strong>
         </p>
         <p id="draws">
-          Pareggi: <strong class="drawsNumber" id="draws-number">0</strong>
+          <span id="draws-title">Pareggi:</span
+          ><strong class="drawsNumber" id="draws-number">0</strong>
         </p>
       </div>
     </div>
