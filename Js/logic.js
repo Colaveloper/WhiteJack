@@ -1,60 +1,23 @@
 document.querySelector("#hit-button").addEventListener("click", hit);
 document.querySelector("#stand-button").addEventListener("click", botLogic);
 
+function cardGenerator() {
+  const cards = []; // lista vuota che deve essere riempita con le carte
+  const suits = ["b", "c", "d", "s"]; // lista dei semi da iterare nel foreach
+  suits.forEach((suit) => {
+    for (let n = 1; n < 11; n++) {
+      // for nel range 1-10
+      cards.push(n + suit); // numero + seme aggiunto alla lista delle carte
+    }
+  });
+  return cards;
+}
+
+console.log(cardGenerator());
 let wj = {
   you: { scoreSpan: "#your-score", div: "#your-cards", score: 0 },
   bot: { scoreSpan: "#bot-score", div: "#bot-cards", score: 0 },
-  cards: [
-    "1b",
-    "1c",
-    "1d",
-    "1s",
-
-    "2b",
-    "2c",
-    "2d",
-    "2s",
-
-    "3b",
-    "3c",
-    "3d",
-    "3s",
-
-    "4b",
-    "4c",
-    "4d",
-    "4s",
-
-    "5b",
-    "5c",
-    "5d",
-    "5s",
-
-    "6b",
-    "6c",
-    "6d",
-    "6s",
-
-    "7b",
-    "7c",
-    "7d",
-    "7s",
-
-    "8b",
-    "8c",
-    "8d",
-    "8s",
-
-    "9b",
-    "9c",
-    "9d",
-    "9s",
-
-    "10b",
-    "10c",
-    "10d",
-    "10s",
-  ],
+  cards: cardGenerator(),
   wins: 0,
   draws: 0,
   losses: 0,
@@ -80,7 +43,7 @@ function randomCard() {
 function hit() {
   hideResult();
   wj.turnsAreOver = false;
-  if (wj.isStand == false) {
+  if (wj.isStand === false) {
     if (currentPlayer.score <= 17) {
       let card = randomCard();
       displayCard(card, YOU);
@@ -103,7 +66,7 @@ function displayCard(card, currentPlayer) {
 }
 
 async function deal() {
-  if (wj.turnsAreOver == true) {
+  if (wj.turnsAreOver === true) {
     showResult(computeWinner());
     wj.isStand = false;
     const yourCards = document
@@ -133,7 +96,7 @@ function updateScore(card, currentPlayer) {
 }
 
 function displayScore(currentPlayer) {
-  if (currentPlayer == YOU) {
+  if (currentPlayer === YOU) {
     document.querySelector("#your-score").textContent = currentPlayer.score;
   } else {
     document.querySelector("#bot-score").textContent = currentPlayer.score;
@@ -145,9 +108,9 @@ function sleep(ms) {
 }
 
 async function botLogic() {
-  if (wj.standable == true) {
+  if (wj.standable === true) {
     wj.isStand = true;
-    if (wj.turnsAreOver == false) {
+    if (wj.turnsAreOver === false) {
       wj.turnsAreOver = true;
       let card = randomCard();
       displayCard(card, BOT);
@@ -159,7 +122,7 @@ async function botLogic() {
       BOT.score < YOU.score &&
       BOT.score < 17 &&
       YOU.score <= 17 &&
-      wj.isStand == true
+      wj.isStand === true
     ) {
       let card = randomCard();
       displayCard(card, BOT);
@@ -196,20 +159,20 @@ function computeWinner() {
 function showResult(winner) {
   if ((wj.turnsAreOver = true)) {
     let message, messageColor;
-    if (winner == YOU) {
+    if (winner === YOU) {
       wj.wins++;
       document.querySelector("#wins-number").textContent = wj.wins;
       message = "Vittoria!";
       messageColor = "#32BEE8";
       cashSound.play();
     }
-    if (winner == BOT) {
+    if (winner === BOT) {
       wj.losses++;
       document.querySelector("#losses-number").textContent = wj.losses;
       message = "Hai perso!";
       messageColor = "#EAAE0E";
       awwSound.play();
-    } else if (winner == undefined) {
+    } else if (winner === undefined) {
       wj.draws++;
       document.querySelector("#draws-number").textContent = wj.draws;
       message = "Pareggio";
@@ -230,7 +193,7 @@ document.querySelector("#language").addEventListener("click", switchLanguage);
 let languageIsEnglish = false;
 
 function switchLanguage() {
-  if (languageIsEnglish == false) {
+  if (languageIsEnglish === false) {
     document.querySelector("#you").textContent = "You: ";
     document.querySelector("#bot").textContent = "Bot: ";
     document.querySelector("#result-message").innerHTML =
