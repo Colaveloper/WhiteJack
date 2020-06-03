@@ -26,9 +26,9 @@ let wj = {
   standable: false,
 };
 
-const YOU = wj["you"];
-const BOT = wj["bot"];
-const CARDS = wj["cards"];
+const YOU = wj.you
+const BOT = wj.bot
+const CARDS = wj.cards
 
 const hitSound = new Audio("src/Sounds/swish.m4a");
 const cashSound = new Audio("src/Sounds/cash.mp3");
