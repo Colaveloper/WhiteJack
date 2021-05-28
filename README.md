@@ -1,11 +1,10 @@
 # WhiteJack
 
-An hybrid of italian playing cards and the old-fashioned darker Jack
+An hybrid of an Italian card game called _9_ and the old-fashioned darker Jack
+Play against the AI by attempting to make your card values sum up to 17, but be careful not to go further!
 
-Play by attempting to make your card values sum up to 17, but be careful not to go further!
+But why _WhiteJack_? Simple, a friend made me notice that calling a variable bj would have guaranteed my game to get a parental advisor tag XD
 
-Why WhiteJack? Simple, a friend made me notice that calling a variable bj would have guaranteed my game to get a parental advisor tag ;P
-
-credits
-card design: myself;
-time: covido
+## Credits
+Card Design: Myself;  
+Time to waste designing them: Winnie the Flu
